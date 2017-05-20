@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- /* 
+Bernard Williams
+UCF Bootcamp APR2017 Week 4
+RPG Starwars Game
+*/ -->
+<html>
+
+<head>
+    <meta charset=utf-8>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <title>Bernard L. Williams - RPG Starwars</title>
+    <link href="assets/css/reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/cyborg/bootstrap.min.css">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body onload="gameInit();">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Bernard L. Williams</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                <li><a href='index.html' class="active">Lets Play Star Wars RPG!!</a></li>
+                <li><a href="instructions.html">Instructions</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mainArea">
+        <!-- Header Row -->
+        <div class="row">
+            <div class="col-md-12">
+
+            </div>
+        </div>
+        <!-- Main Content Area Row -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Choose your character
+                    </div>
+                    <div class="panel-body" id="character">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Enemies
+                    </div>
+                    <div class="panel-body" id="enemies">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading" >
+                        Fight Section
+                    </div>
+                    <div class="panel-body" id="fightSection">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Defender
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Control Panel
+                    </div>
+                    <div class="panel-body" id="controlPanel">
+
+                    </div>
+                    <div class="panel-footer"> <span id="overallAvg"></span><a href="index.html"><button type="button" class="btn btn-primary">Restart</button></a></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <footer class="footer">
+        <p>Copyright 2017 Bernard L. Williams. All Rights Reserved</p>
+    </footer>
+    <!-- Latest compiled and minified JavaScript -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="assets/javascript/games.js"></script>
+    <script src="assets/javascript/config.js"></script>
+</body>
+
+</html>
