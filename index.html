@@ -19,7 +19,7 @@ RPG Starwars Game
     <link href="assets/css/style.css" rel="stylesheet">
 </head>
 
-<body onload="gameInit();">
+<body onload="">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -43,7 +43,7 @@ RPG Starwars Game
         <!-- Main Content Area Row -->
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Choose your character
                     </div>
@@ -58,12 +58,21 @@ RPG Starwars Game
                                 <p>This Captain of Chaos will never leave you wanting for less destrution. Luke, I am your father!!</p>
                             </div>
                         </div>
+                        <div class="media player">
+                            <div class="media-left">
+                                <img src="assets/images/darthVader.jpg" class="media-object" style="width:100px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Darth Vader</h4>
+                                <p>This Captain of Chaos will never leave you wanting for less destrution. Luke, I am your father!!</p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Enemies
                     </div>
@@ -75,7 +84,7 @@ RPG Starwars Game
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Fight Section
                     </div>
@@ -86,7 +95,7 @@ RPG Starwars Game
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Defender
                     </div>
@@ -99,7 +108,7 @@ RPG Starwars Game
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-default">
+                <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Control Panel
                     </div>
@@ -121,12 +130,26 @@ RPG Starwars Game
         <p>Copyright 2017 Bernard L. Williams. All Rights Reserved</p>
     </footer>
     <!-- Latest compiled and minified JavaScript -->
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="assets/javascript/games.js"></script>
     <script src="assets/javascript/config.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //Once the document is loaded check the config file and add a media object for each player in the config file
+            for (var index = 0; index < characters.length; index++) {
+                var player = characters[index];
+                console.log('------------------------------------');
+                console.log(player);
+                
+            }
+            //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
+
+        });
+    </script>
+
+
+
 </body>
 
 </html>

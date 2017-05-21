@@ -84,3 +84,13 @@ div.sideBar {
     font-size: large;
     font-weight: bold;
 }
+.panel-transparent{
+   background: rgba(136, 136, 136, .2);
+}
+.media {
+ padding: 10px;
+}
+.player:hover {
+    border: 1px solid orange;
+   
+}
