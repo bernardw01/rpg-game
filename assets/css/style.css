@@ -48,8 +48,7 @@ a {
     text-decoration: none;
 }
 body {
-    background-image: url(../images/wallpaper.jpg);
-    background-size: cover;
+
 
 }
 div.sideBarHeader {
@@ -90,7 +89,22 @@ div.sideBar {
 .media {
  padding: 10px;
 }
+.media-image {
+    width: 125px;
+}
 .player:hover {
     border: 1px solid orange;
    
+}
+.container {
+    width: 100%;
+    background-image: url(../images/deathStar.jpg);
+    background-size: cover;
+}
+.media p {
+    color: wheat;
+}
+
+.media-heading {
+    font-weight: bold;
 }

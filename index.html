@@ -48,25 +48,8 @@ RPG Starwars Game
                         Choose your character
                     </div>
                     <!-- This shows the panel body -->
-                    <div class="panel-body" id="character">
-                        <div class="media">
-                            <div class="media-left">
-                                <img src="assets/images/darthVader.jpg" class="media-object" style="width:100px">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Darth Vader</h4>
-                                <p>This Captain of Chaos will never leave you wanting for less destrution. Luke, I am your father!!</p>
-                            </div>
-                        </div>
-                        <div class="media player">
-                            <div class="media-left">
-                                <img src="assets/images/darthVader.jpg" class="media-object" style="width:100px">
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Darth Vader</h4>
-                                <p>This Captain of Chaos will never leave you wanting for less destrution. Luke, I am your father!!</p>
-                            </div>
-                        </div>
+                    <div class="panel-body" id="characters">
+
                     </div>
 
                 </div>
@@ -126,9 +109,7 @@ RPG Starwars Game
     </div>
 
     </div>
-    <footer class="footer">
-        <p>Copyright 2017 Bernard L. Williams. All Rights Reserved</p>
-    </footer>
+
     <!-- Latest compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="assets/javascript/games.js"></script>
@@ -141,7 +122,37 @@ RPG Starwars Game
                 var player = characters[index];
                 console.log('------------------------------------');
                 console.log(player);
-                
+
+                //Create a new media object for each character in the config file
+                var newCharacterElement = $("<div>");
+                newCharacterElement.addClass('media player');
+
+                var newMediaLeft = $("<div>");
+                newMediaLeft.addClass('media-left');
+
+                var newMediaImage = $("<img>");
+                newMediaImage.addClass('media-object media-image');
+                newMediaImage.attr('src', characters[index].imgURL)
+
+
+                var newMediaBody = $("<div>");
+                newMediaBody.addClass('media-body');
+
+                var newMediaHeading = $("<h4>");
+                newMediaHeading.addClass('media-heading');
+                newMediaHeading.text(characters[index].name);
+
+                var newMediaText = $("<p>");
+                newMediaText.text(characters[index].desc);
+
+                newMediaLeft.append(newMediaImage);
+                newMediaBody.append(newMediaHeading);
+                newMediaBody.append(newMediaText);
+                newCharacterElement.append(newMediaLeft);
+                newCharacterElement.append(newMediaBody);
+
+                $("#characters").append(newCharacterElement);
+
             }
             //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
 
