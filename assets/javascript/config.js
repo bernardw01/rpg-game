@@ -14,6 +14,15 @@ var characters = [
     attackPower: 0,
     healthPoints: 0,
     counterAttackPower: 0
+  },  
+  {
+    name: "Luke Skywalker",
+    imgURL: "assets/images/luke.png",
+    desc: "Yes.  He has Daddy issues.  But can you really blame him.  His Dad has made a lot of bad choices.",
+    id: "ls",
+    attackPower: 0,
+    healthPoints: 0,
+    counterAttackPower: 0
   },
   {
     name: "Hans Solo",

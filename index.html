@@ -114,6 +114,7 @@ RPG Starwars Game
         var enemies = []; //array of enemy players
         var currentPlayer = {};
         var currentDefender = {};
+        var numAttacks = 0;
 
         //Enumeration to represent game state
         var gameState = {
@@ -126,8 +127,9 @@ RPG Starwars Game
 
         $(document).ready(function () {
 
+            //The function sets all of the players values to random numbers within a specific range
             initializePlayers();
-            
+
             //Once the document is loaded check the config file and add a media object for each player in the config file
             for (var index = 0; index < characters.length; index++) {
                 var player = characters[index];
@@ -153,7 +155,7 @@ RPG Starwars Game
                 newMediaBody.addClass('media-body');
 
                 //Generate heading
-                var newMediaHeading = $("<h4>");
+                var newMediaHeading = $("<h5>");
                 newMediaHeading.addClass('media-heading');
                 newMediaHeading.text(characters[index].name);
                 var hpLabel = $("<span id='hpbadge'>");
@@ -195,6 +197,9 @@ RPG Starwars Game
                     currentPlayerID = $(this).attr('id');
                     gameState.playerSelected = true;
 
+                    //Populate the current player object
+                    currentPlayer = getPlayerByID(currentPlayerID);
+
                     //Put a border around the enemies panel
                     $('#enemies').addClass('panelBorder');
                     $('#characters').removeClass('panelBorder');
@@ -212,6 +217,9 @@ RPG Starwars Game
                         currentDefenderID = $(this).attr('id');     //Set the global variable for the selected defender
                         $("#" + $(this).attr('id')).appendTo("#defender");
 
+                        //Set the current defender based on its ID
+                        currentDefender = getPlayerByID(currentDefenderID);
+
                         //Put a border around the fightSection panel
                         $('#fightSection').addClass('panelBorder');
                         $('#enemies').removeClass('panelBorder');
@@ -221,6 +229,39 @@ RPG Starwars Game
                 }
 
             });
+
+            //When the attack button is pressed
+            $("#attack").click(function () {
+                numAttacks++;
+                var newText = '';
+                newText = playerAttack();
+                $('#fightSection').text(newText);
+                updateCharacterDisplay();
+
+
+            });
+            //This function updates the screen with the latest information for the player and defender that was passed.
+            function updateCharacterDisplay() {
+                //update the defender
+                var hpElement = $('#' + currentDefenderID).find('#hpbadge');
+                hpElement.text(currentDefender.healthPoints);
+
+                var apElement = $('#' + currentDefenderID).find('#apbadge');
+                apElement.text(currentDefender.attackPower);
+
+                var cpElement = $('#' + currentDefenderID).find('#cpbadge');
+                cpElement.text(currentDefender.counterAttackPower);
+
+                //update the Player
+                var hpElement = $('#' + currentPlayerID).find('#hpbadge');
+                hpElement.text(currentPlayer.healthPoints);
+
+                var apElement = $('#' + currentPlayerID).find('#apbadge');
+                apElement.text(currentPlayer.attackPower);
+
+                var cpElement = $('#' + currentPlayerID).find('#cpbadge');
+                cpElement.text(currentPlayer.counterAttackPower);
+            }
 
         });
     </script>
