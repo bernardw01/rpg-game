@@ -42,7 +42,7 @@ RPG Starwars Game
         </div>
         <!-- Main Content Area Row -->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Choose your character
@@ -54,12 +54,23 @@ RPG Starwars Game
 
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
                         Enemies
                     </div>
                     <div class="panel-body" id="enemies">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default panel-transparent">
+                    <div class="panel-heading">
+                        Defender
+                    </div>
+                    <div class="panel-body" id="defender">
+
                     </div>
 
                 </div>
@@ -74,22 +85,11 @@ RPG Starwars Game
                     <div class="panel-body" id="fightSection">
 
                     </div>
-
+                    <div class="panel-footer">
+                         <button type="button" id="attack" class="btn btn-primary">Attack!!</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="panel panel-default panel-transparent">
-                    <div class="panel-heading">
-                        Defender
-                    </div>
-                    <div class="panel-body">
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
             <div class="col-md-6">
                 <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
@@ -101,11 +101,8 @@ RPG Starwars Game
                     <div class="panel-footer"> <span id="overallAvg"></span><a href="index.html"><button type="button" class="btn btn-primary">Restart</button></a></div>
                 </div>
             </div>
-            <div class="col-md-6">
-
-
-            </div>
         </div>
+
     </div>
 
     </div>
@@ -115,6 +112,22 @@ RPG Starwars Game
     <script src="assets/javascript/games.js"></script>
     <script src="assets/javascript/config.js"></script>
     <script>
+        //global variables
+        var currentPlayerID = '';
+        var currentDefenderID = '';
+        var enemies = []; //array of enemy players
+        var currentPlayer = {};
+        var currentDefender = {};
+
+        //Enumeration to represent game state
+        var gameState = {
+            newGame: true,
+            defenderSelected: false,
+            playerSelected: false,
+            playerDefeated: false,
+            defenderDefeated: false
+        }
+
         $(document).ready(function () {
 
             //Once the document is loaded check the config file and add a media object for each player in the config file
@@ -126,6 +139,7 @@ RPG Starwars Game
                 //Create a new media object for each character in the config file
                 var newCharacterElement = $("<div>");
                 newCharacterElement.addClass('media player');
+                newCharacterElement.attr('id', characters[index].id)
 
                 var newMediaLeft = $("<div>");
                 newMediaLeft.addClass('media-left');
@@ -155,6 +169,33 @@ RPG Starwars Game
 
             }
             //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
+
+            $(".media").click(function () {
+
+                if (gameState.newGame) {
+                    gameState.newGame = false;
+                    currentPlayerID = $(this).attr('id');
+                    gameState.playerSelected = true;
+
+                    //Load the global array that holds the enemies
+                    characters.forEach(getEnemies); //function in game.js
+
+                    for (var i = 0; i < enemies.length; i++) {
+                        $("#" + enemies[i].id).appendTo("#enemies");
+                    }
+                } else if (currentPlayerID != $(this).attr('id')) { //check to see which player has been selected to be
+                    if (!gameState.defenderSelected) {              // in the defense     
+                        gameState.defenderSelected = true;
+                        currentDefenderID = $(this).attr('id');  //Set the global variable for the selected defender
+                        $("#" + $(this).attr('id')).appendTo("#defender");
+                    }
+
+                }
+
+
+
+
+            });
 
         });
     </script>
