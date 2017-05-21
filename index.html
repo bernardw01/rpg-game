@@ -35,11 +35,7 @@ RPG Starwars Game
 
     <div class="container mainArea">
         <!-- Header Row -->
-        <div class="row">
-            <div class="col-md-12">
 
-            </div>
-        </div>
         <!-- Main Content Area Row -->
         <div class="row">
             <div class="col-md-4">
@@ -130,6 +126,8 @@ RPG Starwars Game
 
         $(document).ready(function () {
 
+            initializePlayers();
+            
             //Once the document is loaded check the config file and add a media object for each player in the config file
             for (var index = 0; index < characters.length; index++) {
                 var player = characters[index];
@@ -197,9 +195,10 @@ RPG Starwars Game
                     currentPlayerID = $(this).attr('id');
                     gameState.playerSelected = true;
 
-                    //Put a border around the character panel
+                    //Put a border around the enemies panel
                     $('#enemies').addClass('panelBorder');
                     $('#characters').removeClass('panelBorder');
+                    $('#fightSection').text('... Please select who you want to fight first...');
 
                     //Load the global array that holds the enemies
                     characters.forEach(getEnemies); //function in game.js
@@ -216,6 +215,7 @@ RPG Starwars Game
                         //Put a border around the fightSection panel
                         $('#fightSection').addClass('panelBorder');
                         $('#enemies').removeClass('panelBorder');
+                        $('#fightSection').text('... Press the attack button to start beating ass...');
                     }
 
                 }
