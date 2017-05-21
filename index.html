@@ -86,7 +86,7 @@ RPG Starwars Game
 
                     </div>
                     <div class="panel-footer">
-                         <button type="button" id="attack" class="btn btn-primary">Attack!!</button>
+                        <button type="button" id="attack" class="btn btn-primary">Attack!!</button>
                     </div>
                 </div>
             </div>
@@ -136,6 +136,8 @@ RPG Starwars Game
                 console.log('------------------------------------');
                 console.log(player);
 
+                //set the hit points for the players
+
                 //Create a new media object for each character in the config file
                 var newCharacterElement = $("<div>");
                 newCharacterElement.addClass('media player');
@@ -152,9 +154,23 @@ RPG Starwars Game
                 var newMediaBody = $("<div>");
                 newMediaBody.addClass('media-body');
 
+                //Generate heading
                 var newMediaHeading = $("<h4>");
                 newMediaHeading.addClass('media-heading');
                 newMediaHeading.text(characters[index].name);
+                var hpLabel = $("<span id='hpbadge'>");
+                hpLabel.addClass("badge healthPoints badge-success");
+                hpLabel.text(characters[index].healthPoints)
+                newMediaHeading.append(hpLabel);
+                var apLabel = $("<span id='apbadge'>");
+                apLabel.addClass("badge healthPoints badge-warning");
+                apLabel.text(characters[index].attackPower)
+                newMediaHeading.append(apLabel);
+                var capLabel = $("<span id='cpbadge'>");
+                capLabel.addClass("badge healthPoints badge-danger");
+                capLabel.text(characters[index].counterAttackPower)
+                newMediaHeading.append(capLabel);
+
 
                 var newMediaText = $("<p>");
                 newMediaText.text(characters[index].desc);
@@ -167,15 +183,23 @@ RPG Starwars Game
 
                 $("#characters").append(newCharacterElement);
 
-            }
-            //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
+                //Put a border around the character panel
+                $('#characters').addClass('panelBorder');
+                $('#fightSection').text('... Please select your character to start...');
 
+            }
+
+            //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
             $(".media").click(function () {
 
                 if (gameState.newGame) {
                     gameState.newGame = false;
                     currentPlayerID = $(this).attr('id');
                     gameState.playerSelected = true;
+
+                    //Put a border around the character panel
+                    $('#enemies').addClass('panelBorder');
+                    $('#characters').removeClass('panelBorder');
 
                     //Load the global array that holds the enemies
                     characters.forEach(getEnemies); //function in game.js
@@ -186,14 +210,15 @@ RPG Starwars Game
                 } else if (currentPlayerID != $(this).attr('id')) { //check to see which player has been selected to be
                     if (!gameState.defenderSelected) {              // in the defense     
                         gameState.defenderSelected = true;
-                        currentDefenderID = $(this).attr('id');  //Set the global variable for the selected defender
+                        currentDefenderID = $(this).attr('id');     //Set the global variable for the selected defender
                         $("#" + $(this).attr('id')).appendTo("#defender");
+
+                        //Put a border around the fightSection panel
+                        $('#fightSection').addClass('panelBorder');
+                        $('#enemies').removeClass('panelBorder');
                     }
 
                 }
-
-
-
 
             });
 

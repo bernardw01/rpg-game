@@ -24,7 +24,7 @@ function getEnemies(player) {
 }
 
 //Function to randomly generate a players initial strength
-function getHitPoints(){
+function gethealthPoints(){
 
 }
 
