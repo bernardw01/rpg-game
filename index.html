@@ -89,9 +89,9 @@ RPG Starwars Game
             <div class="col-md-6">
                 <div class="panel panel-default panel-transparent">
                     <div class="panel-heading">
-                        Control Panel
+                        Battle Results
                     </div>
-                    <div class="panel-body" id="controlPanel">
+                    <div class="panel-body" id="battleResults">
 
                     </div>
                     <div class="panel-footer"> <span id="overallAvg"></span><a href="index.html"><button type="button" class="btn btn-primary">Restart</button></a></div>
@@ -232,25 +232,33 @@ RPG Starwars Game
 
             //When the attack button is pressed
             $("#attack").click(function () {
-                numAttacks++;
-                var newText = '';
-                newText = playerAttack();
-                $('#fightSection').text(newText);
-                updateCharacterDisplay();
+
+                if (!gameState.playerDefeated) {
+                    numAttacks++;
+                    var newText = '';
+                    newText = playerAttack();
+                    $('#fightSection').text(newText);
+                    updateCharacterDisplay();
+                    gameState.defenderSelected = false;
+                }
 
 
             });
             //This function updates the screen with the latest information for the player and defender that was passed.
             function updateCharacterDisplay() {
                 //update the defender
-                var hpElement = $('#' + currentDefenderID).find('#hpbadge');
-                hpElement.text(currentDefender.healthPoints);
+                if (gameState.defenderDefeated) {
+                    $('#' + currentDefenderID).remove();
+                } else {
+                    var hpElement = $('#' + currentDefenderID).find('#hpbadge');
+                    hpElement.text(currentDefender.healthPoints);
 
-                var apElement = $('#' + currentDefenderID).find('#apbadge');
-                apElement.text(currentDefender.attackPower);
+                    var apElement = $('#' + currentDefenderID).find('#apbadge');
+                    apElement.text(currentDefender.attackPower);
 
-                var cpElement = $('#' + currentDefenderID).find('#cpbadge');
-                cpElement.text(currentDefender.counterAttackPower);
+                    var cpElement = $('#' + currentDefenderID).find('#cpbadge');
+                    cpElement.text(currentDefender.counterAttackPower);
+                }
 
                 //update the Player
                 var hpElement = $('#' + currentPlayerID).find('#hpbadge');
@@ -261,6 +269,8 @@ RPG Starwars Game
 
                 var cpElement = $('#' + currentPlayerID).find('#cpbadge');
                 cpElement.text(currentPlayer.counterAttackPower);
+
+
             }
 
         });
