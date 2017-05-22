@@ -35,7 +35,11 @@ RPG Starwars Game
 
     <div class="container mainArea">
         <!-- Header Row -->
+        <div class="row">
+            <div class="col-md-12" id="headerRow">
 
+            </div>
+        </div>
         <!-- Main Content Area Row -->
         <div class="row">
             <div class="col-md-4">
@@ -129,6 +133,20 @@ RPG Starwars Game
 
             //The function sets all of the players values to random numbers within a specific range
             initializePlayers();
+
+            //Code to put the legend in the header
+            var hpLabel = $("<span id=''>");
+            hpLabel.addClass("badge healthPoints badge-success");
+            hpLabel.text('Health Points');
+            $('#headerRow').append(hpLabel);
+            var apLabel = $("<span id=''>");
+            apLabel.addClass("badge healthPoints badge-warning");
+            apLabel.text('Attack Power');
+            $('#headerRow').append(apLabel);
+            var capLabel = $("<span id=''>");
+            capLabel.addClass("badge healthPoints badge-danger");
+            capLabel.text('Counter Attack Power');
+            $('#headerRow').append(capLabel);
 
             //Once the document is loaded check the config file and add a media object for each player in the config file
             for (var index = 0; index < characters.length; index++) {
