@@ -119,6 +119,7 @@ RPG Starwars Game
         var currentPlayer = {};
         var currentDefender = {};
         var numAttacks = 0;
+        var initAttackPower = 0;  //place holder for storing the initial AP for the current player.
 
         //Enumeration to represent game state
         var gameState = {
@@ -217,6 +218,7 @@ RPG Starwars Game
 
                     //Populate the current player object
                     currentPlayer = getPlayerByID(currentPlayerID);
+                    initAttackPower = currentPlayer.attackPower;
 
                     //Put a border around the enemies panel
                     $('#enemies').addClass('panelBorder');

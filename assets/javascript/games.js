@@ -20,8 +20,8 @@ function getEnemies(player) {
 //Function to randomly generate a players initial strength
 function initializePlayers() {
   for (var i = 0; i < characters.length; i++) {
-    characters[i].attackPower = getRandomInt(2, 6);
-    characters[i].counterAttackPower = 25;
+    characters[i].attackPower = getRandomInt(10, 25);
+    characters[i].counterAttackPower = getRandomInt(10, 25);
     characters[i].healthPoints = getRandomInt(84, 180);
   }
 }
@@ -29,7 +29,7 @@ function initializePlayers() {
 //Function that facilitates the players attack of the defender
 function playerAttack() {
   console.log("------------------------------------");
-  console.log("Attack has occurred");
+  console.log("Attack " + numAttacks + " has occurred");
   console.log("Player Name " + currentPlayer.name);
   console.log("Player HP " + currentPlayer.healthPoints);
   console.log("Player AP " + currentPlayer.attackPower);
@@ -38,7 +38,7 @@ function playerAttack() {
   console.log("Defender AP " + currentDefender.attackPower);
   console.log("------------------------------------");
   //The ap of the player is multiplied by the number of attacks
-  currentPlayer.attackPower *= numAttacks;
+  currentPlayer.attackPower = (numAttacks * initAttackPower);
   //Defender hp is reduced by the ap of the player
   currentDefender.healthPoints -= currentPlayer.attackPower;
 
@@ -72,6 +72,7 @@ function playerAttack() {
     console.log("Player Defeated");
     console.log(currentPlayer.name);
     console.log("------------------------------------");
+    msg += 'You really need to do better.  Save your excuses for your parents whom you so often dissapoint. Now please try again.';
   } else if (
     currentDefender.healthPoints < 1 &&
     currentDefender.healthPoints < currentPlayer.healthPoints
@@ -82,6 +83,7 @@ function playerAttack() {
     console.log(currentDefender.name);
     console.log(currentDefender.healthPoints);
     console.log("------------------------------------");
+    msg += ' CONGRATULATIONS!!!! You have won the match!  Please select your next opponent';
   }
 
   return msg;
