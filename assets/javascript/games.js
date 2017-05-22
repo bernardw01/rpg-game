@@ -15,6 +15,7 @@ function getEnemies(player) {
   } else {
     currentPlayer = player;
   }
+  enemiesRemaining = enemies.length;
 }
 
 //Function to randomly generate a players initial strength

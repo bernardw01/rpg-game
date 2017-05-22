@@ -120,6 +120,7 @@ RPG Starwars Game
         var currentDefender = {};
         var numAttacks = 0;
         var initAttackPower = 0;  //place holder for storing the initial AP for the current player.
+        var enemiesRemaining = 0;
 
         //Enumeration to represent game state
         var gameState = {
@@ -127,7 +128,8 @@ RPG Starwars Game
             defenderSelected: false,
             playerSelected: false,
             playerDefeated: false,
-            defenderDefeated: false
+            defenderDefeated: false,
+            playerWins: false
         }
 
         $(document).ready(function () {
@@ -253,13 +255,22 @@ RPG Starwars Game
             //When the attack button is pressed
             $("#attack").click(function () {
 
-                if (!gameState.playerDefeated) {
+                if (!gameState.playerDefeated && !gameState.playerWins) {
                     numAttacks++;
                     var newText = '';
-                    newText = playerAttack();
-                    $('#fightSection').text(newText);
-                    updateCharacterDisplay();
-                    gameState.defenderSelected = false;
+                    if (currentPlayer.healthPoints > 1) {
+                        newText = playerAttack();
+                        $('#fightSection').text(newText);
+                        updateCharacterDisplay();
+                        gameState.defenderSelected = false;
+                        if (gameState.playerWins) {
+                            $('#fightSection').text('CONGRATULATIONS!!!  You HAVE won!!');
+                        }
+
+                    } else {
+                        $('#fightSection').text('You have won the battle but lost the war.');
+                    }
+
                 }
 
 
@@ -269,6 +280,11 @@ RPG Starwars Game
                 //update the defender
                 if (gameState.defenderDefeated) {
                     $('#' + currentDefenderID).remove();
+                    enemiesRemaining--;
+                    if (enemiesRemaining < 1) {
+                        gameState.playerWins = true;
+                    }
+                    gameState.defenderDefeated = false;
                 } else {
                     var hpElement = $('#' + currentDefenderID).find('#hpbadge');
                     hpElement.text(currentDefender.healthPoints);
