@@ -121,7 +121,7 @@ RPG Starwars Game
 
 
 
-            //When the user clicks a player move that player to the fight section and move the remaining players to the enemies secition
+            //When the user clicks a player move that player to the fight section and move the remaining players to the enemies section
             $(".media").click(function () {
 
                 if (gameState.newGame) {
@@ -148,6 +148,8 @@ RPG Starwars Game
                     if (!gameState.defenderSelected) {              // in the defense     
                         gameState.defenderSelected = true;
                         currentDefenderID = $(this).attr('id');     //Set the global variable for the selected defender
+
+                        $("#" + $(this).attr('id')).fadeOut('slow');
                         $("#" + $(this).attr('id')).appendTo("#defender");
 
                         //Set the current defender based on its ID
